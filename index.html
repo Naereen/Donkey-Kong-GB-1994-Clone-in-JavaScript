@@ -354,7 +354,9 @@
       
       document.getElementById('btn-enter').addEventListener('touchstart', (e) => {
         e.preventDefault();
-        triggerKeyEvent(13, 'keypress');
+        if (typeof window.handleStartRetry === 'function') {
+          window.handleStartRetry();
+        }
       });
       
       // Also support mouse clicks for desktop testing
@@ -373,7 +375,11 @@
       document.getElementById('btn-jump').addEventListener('mousedown', () => triggerKeyEvent(32, 'keydown'));
       document.getElementById('btn-jump').addEventListener('mouseup', () => triggerKeyEvent(32, 'keyup'));
       
-      document.getElementById('btn-enter').addEventListener('click', () => triggerKeyEvent(13, 'keypress'));
+      document.getElementById('btn-enter').addEventListener('click', () => {
+        if (typeof window.handleStartRetry === 'function') {
+          window.handleStartRetry();
+        }
+      });
     </script>
   </body>
 </html>

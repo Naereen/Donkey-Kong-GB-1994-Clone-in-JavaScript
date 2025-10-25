@@ -285,38 +285,61 @@ let updateAll = ()=>{
   score = 0;
 }
 
-let startGameCanvas = () => {
+let drawStartScreen = () => {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
-  window.addEventListener('load', (e) => {
-    startSound.play();
-    ctx.fillStyle = 'black';
-    ctx.fillRect(0,0, canvas.width,canvas.height);
-    ctx.drawImage(banner_Image, canvas.width/2 - banner_Image.width/2 ,canvas.height / 2 - banner_Image.height / 2 - 200);
-    ctx.drawImage(orangebarrel_Image, canvas.width/2 - banner_Image.width + 100 ,canvas.height / 2 - banner_Image.height / 2 );
-    ctx.drawImage(orangebarrel_Image, canvas.width - 200 ,canvas.height / 2 - banner_Image.height / 2 );
-    ctx.drawImage(kong_Image, canvas.width - kong_Image.width * 3.7 ,canvas.height / 2 - banner_Image.height / 2 );
-    ctx.drawImage(hammer_Image, canvas.width - 430,canvas.height / 2 +  35 );
+  startSound.play();
+  ctx.fillStyle = 'black';
+  ctx.fillRect(0,0, canvas.width,canvas.height);
+  ctx.drawImage(banner_Image, canvas.width/2 - banner_Image.width/2 ,canvas.height / 2 - banner_Image.height / 2 - 200);
+  ctx.drawImage(orangebarrel_Image, canvas.width/2 - banner_Image.width + 100 ,canvas.height / 2 - banner_Image.height / 2 );
+  ctx.drawImage(orangebarrel_Image, canvas.width - 200 ,canvas.height / 2 - banner_Image.height / 2 );
+  ctx.drawImage(kong_Image, canvas.width - kong_Image.width * 3.7 ,canvas.height / 2 - banner_Image.height / 2 );
+  ctx.drawImage(hammer_Image, canvas.width - 430,canvas.height / 2 +  35 );
 
-    ctx.save();
-    ctx.font = '24px START GAME';
-    ctx.fillStyle = 'red';
+  ctx.save();
+  ctx.font = '24px START GAME';
+  ctx.fillStyle = 'red';
 
-    ctx.strokeText(`START GAME`, canvas.width / 2  , canvas.height / 2);
-    ctx.fillText(`START GAME`, canvas.width / 2 - 60  , canvas.height / 2 + 50);
-    ctx.restore();
+  ctx.strokeText(`START GAME`, canvas.width / 2  , canvas.height / 2);
+  ctx.fillText(`START GAME`, canvas.width / 2 - 60  , canvas.height / 2 + 50);
+  ctx.restore();
 
-    ctx.save();
-    ctx.font = '18px START GAME';
-    ctx.fillStyle = 'white';
-    ctx.fillText(`Press Enter.`, canvas.width / 2 -30  , canvas.height / 2 + 130);
-    ctx.restore();
-  })
+  ctx.save();
+  ctx.font = '18px START GAME';
+  ctx.fillStyle = 'white';
+  ctx.fillText(`Press Enter.`, canvas.width / 2 -30  , canvas.height / 2 + 130);
+  ctx.restore();
+}
+
+let startGameCanvas = () => {
+  // Wait for images to load before drawing
+  Promise.all([
+    new Promise(resolve => banner_Image.complete ? resolve() : banner_Image.addEventListener('load', resolve)),
+    new Promise(resolve => orangebarrel_Image.complete ? resolve() : orangebarrel_Image.addEventListener('load', resolve)),
+    new Promise(resolve => kong_Image.complete ? resolve() : kong_Image.addEventListener('load', resolve)),
+    new Promise(resolve => hammer_Image.complete ? resolve() : hammer_Image.addEventListener('load', resolve))
+  ]).then(drawStartScreen);
 
   document.onkeypress = (e) => {
     if (e.keyCode == 13 && !isGamePlaying) {
       startGame();
       isGamePlaying = true;
     }
+  }
+}
+
+// Function to handle start/retry button clicks
+window.handleStartRetry = () => {
+  if (!isGamePlaying && !isGameOver) {
+    // Start game for the first time
+    startGame();
+    isGamePlaying = true;
+  } else if (isGameOver) {
+    // Retry after game over or win
+    startGame();
+    updateAll();
+    isGameOver = false;
+    ismarioalive = true;
   }
 }
 let startGame = ()=>{
