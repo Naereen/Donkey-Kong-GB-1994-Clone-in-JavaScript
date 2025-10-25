@@ -45,7 +45,7 @@ Donkey-Kong-GB-1994-Clone-in-JavaScript/
 │   ├── ladder.js          # Ladder objects
 │   ├── enemy.js           # Enemy characters
 │   ├── hammer.js          # Power-up hammer objects
-│   └── obsctacle.js       # Obstacle elements
+│   └── obsctacle.js       # Obstacle elements (note: filename has typo)
 ├── images/                 # All game sprites and graphics
 │   ├── smallmariosheet-3.png
 │   ├── barrelspritesheet.png
