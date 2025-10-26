@@ -38,7 +38,8 @@ let trackRight = 0,
   speed = 3,
   score,
   gameclearance,
-  highscore;
+  highscore,
+  marioLives = 3;
 
   let banner_Image = new Image();
   let orangebarrel_Image = new Image();
@@ -164,7 +165,12 @@ let collisionDetection = (eachbarrelladder)=>{
 
   if(!ismariohammer){
     collisionSound.play();
-    afterCollision();
+    // Decrease life instead of instant death
+    marioLives--;
+    if (marioLives <= 0) {
+      // Only trigger death when all lives are lost
+      afterCollision();
+    }
   }
   if(ismariohammer)
   ismarioalive = true;
@@ -192,7 +198,12 @@ let collisionDetectionBlue = (eachbluebarrel)=>{
 
   if(!ismariohammer){
     collisionSound.play();
-    afterCollision();
+    // Decrease life instead of instant death
+    marioLives--;
+    if (marioLives <= 0) {
+      // Only trigger death when all lives are lost
+      afterCollision();
+    }
   }
   if(ismariohammer)
   ismarioalive = true;
@@ -216,7 +227,10 @@ let displayScore = ()=>{
   ctx.beginPath();
   ctx.fillStyle = 'red';
   ctx.font = "20px Arial";
-  ctx.fillText("Score : " + score ,500,40);
+  // Display lives (hearts) before the score
+  let heartsText = '❤️'.repeat(marioLives);
+  // X position adjusted to 450 to accommodate hearts display
+  ctx.fillText(heartsText + " Score : " + score ,450,40);
   ctx.closePath();
 }
 
@@ -283,6 +297,7 @@ let updateAll = ()=>{
   marioPlayer.positionX = 150 ;
   marioPlayer.positionY = 517;
   score = 0;
+  marioLives = 3;
 }
 
 let drawStartScreen = () => {
