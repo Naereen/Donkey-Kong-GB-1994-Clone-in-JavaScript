@@ -83,7 +83,8 @@ class MARIO{
     updateFrame();
     left = false;
     // Prevent Mario from moving beyond the right edge of the canvas
-    if (this.positionX + single_width < canvas.width) {
+    // Stop twice the sprite width before the edge
+    if (this.positionX + single_width < canvas.width - (single_width * 2)) {
       this.positionX += 0.5;
     }
   }
@@ -92,7 +93,8 @@ class MARIO{
     updateFrame();
     left = true;
     // Prevent Mario from moving beyond the left edge of the canvas
-    if (this.positionX > 0) {
+    // Stop twice the sprite width before the edge
+    if (this.positionX > single_width * 2) {
       this.positionX -= speed;
     }
   }

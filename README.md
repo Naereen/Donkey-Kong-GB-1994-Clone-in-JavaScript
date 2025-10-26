@@ -155,7 +155,6 @@ The game features over 50 sprite images including:
 
 ## 🐛 Known Limitations
 
-- No mobile touch controls (keyboard only)
 - Single level/stage implementation
 - No multiplayer support
 - Audio autoplay may be blocked by browser policies
