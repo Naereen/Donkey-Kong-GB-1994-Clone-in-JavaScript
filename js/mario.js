@@ -82,13 +82,19 @@ class MARIO{
   moveRight(eachplatform){
     updateFrame();
     left = false;
-    this.positionX += 0.5;
+    // Prevent Mario from moving beyond the right edge of the canvas
+    if (this.positionX + single_width < canvas.width) {
+      this.positionX += 0.5;
+    }
   }
 
   moveLeft(){
     updateFrame();
     left = true;
-    this.positionX -= speed;
+    // Prevent Mario from moving beyond the left edge of the canvas
+    if (this.positionX > 0) {
+      this.positionX -= speed;
+    }
   }
 
 
