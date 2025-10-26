@@ -91,25 +91,29 @@ let gameLoop = () => {
     for(let eachbluebarrel of barrelArraynext) {
       eachbluebarrel.updatebluebarrel();
       eachbluebarrel.draw();
-      if(collisionDetectionBlue(eachbluebarrel) && !ismariohammer && !ismarioalive){
-        setTimeout(()=>{
-          clearInterval(gameclearance);
-        },500)
+      if(collisionDetectionBlue(eachbluebarrel) && !ismariohammer){
+        if(!ismarioalive){
+          setTimeout(()=>{
+            clearInterval(gameclearance);
+          },500)
           isGameOver = true;
-      break;
+          break;
+        }
+      }
     }
-  }
 
     for(let eachbarrelladder of barrelArrayLadder) {
       eachbarrelladder.updatebarrelladder();
       eachbarrelladder.draw();
-      if(collisionDetection(eachbarrelladder) && ! ismariohammer && !ismarioalive){
-        setTimeout(()=>{
-          clearInterval(gameclearance);
-        },500)
+      if(collisionDetection(eachbarrelladder) && !ismariohammer){
+        if(!ismarioalive){
+          setTimeout(()=>{
+            clearInterval(gameclearance);
+          },500)
           isGameOver = true;
-      break;
-    }
+          break;
+        }
+      }
 
     }
 
@@ -169,6 +173,7 @@ let collisionDetection = (eachbarrelladder)=>{
     marioLives--;
     if (marioLives <= 0) {
       // Only trigger death when all lives are lost
+      ismarioalive = false;
       afterCollision();
     }
   }
@@ -202,6 +207,7 @@ let collisionDetectionBlue = (eachbluebarrel)=>{
     marioLives--;
     if (marioLives <= 0) {
       // Only trigger death when all lives are lost
+      ismarioalive = false;
       afterCollision();
     }
   }
