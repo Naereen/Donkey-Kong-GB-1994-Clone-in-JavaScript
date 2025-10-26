@@ -105,15 +105,6 @@
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         gap: 10px;
-        margin-top: 10px;
-      }
-      
-      .mobile-controls h3 {
-        grid-column: 1 / -1;
-        color: #00ff00;
-        font-size: 16px;
-        margin-bottom: 5px;
-        text-align: center;
       }
       
       .control-btn {
@@ -214,6 +205,16 @@
           font-size: 20px;
         }
         
+        #canvas {
+          max-height: 40vh;
+          width: auto;
+          object-fit: contain;
+        }
+        
+        main {
+          overflow-y: auto;
+        }
+        
         .controls-section {
           padding: 10px;
         }
@@ -232,6 +233,19 @@
     
     <main>
       <canvas id="canvas"></canvas>
+      
+      <div class="controls-section">
+        <h2>📱 Touch Controls (Mobile)</h2>
+        
+        <div class="mobile-controls">
+          <button class="control-btn btn-up" id="btn-up">⬆️<br>UP</button>
+          <button class="control-btn btn-left" id="btn-left">⬅️<br>LEFT</button>
+          <button class="control-btn btn-down" id="btn-down">⬇️<br>DOWN</button>
+          <button class="control-btn btn-right" id="btn-right">➡️<br>RIGHT</button>
+          <button class="control-btn jump btn-jump" id="btn-jump">🦘 JUMP</button>
+          <button class="control-btn primary btn-enter" id="btn-enter">▶️ START / RETRY</button>
+        </div>
+      </div>
       
       <div class="controls-section">
         <h2>📋 Game Controls</h2>
@@ -264,16 +278,6 @@
               <td>Start game / Retry</td>
             </tr>
           </table>
-        </div>
-        
-        <div class="mobile-controls">
-          <h3>📱 Touch Controls (Mobile)</h3>
-          <button class="control-btn btn-up" id="btn-up">⬆️<br>UP</button>
-          <button class="control-btn btn-left" id="btn-left">⬅️<br>LEFT</button>
-          <button class="control-btn btn-down" id="btn-down">⬇️<br>DOWN</button>
-          <button class="control-btn btn-right" id="btn-right">➡️<br>RIGHT</button>
-          <button class="control-btn jump btn-jump" id="btn-jump">🦘 JUMP</button>
-          <button class="control-btn primary btn-enter" id="btn-enter">▶️ START / RETRY</button>
         </div>
       </div>
     </main>
