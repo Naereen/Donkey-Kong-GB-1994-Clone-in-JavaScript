@@ -228,10 +228,8 @@ let displayScore = ()=>{
   ctx.fillStyle = 'red';
   ctx.font = "20px Arial";
   // Display lives (hearts) before the score
-  let heartsText = '';
-  for (let i = 0; i < marioLives; i++) {
-    heartsText += '❤️';
-  }
+  let heartsText = '❤️'.repeat(marioLives);
+  // X position adjusted to 450 to accommodate hearts display
   ctx.fillText(heartsText + " Score : " + score ,450,40);
   ctx.closePath();
 }
