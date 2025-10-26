@@ -56,26 +56,26 @@ class BARREL {
   updatebarrelladder(){
     this.ladderindex = 7;
     if (this.positionY == 110 - barrel_single_height || this.positionY == 280 - barrel_single_height || this.positionY == 450 - barrel_single_height) {
-      this.positionX += 10;
+      this.positionX += 7;
     }
 
     if (this.positionY == 190 - barrel_single_height || this.positionY == 370 - barrel_single_height || this.positionY == 540 - barrel_single_height) {
-      this.positionX -= 10;
+      this.positionX -= 7;
     }
 
     if ((this.positionX == 500 && !(this.positionY == 190 - barrel_single_height || this.positionY == 370 - barrel_single_height || this.positionY == 540 - barrel_single_height)) || (this.positionX == 110 && !(this.positionY == 110 - barrel_single_height || this.positionY == 280 - barrel_single_height || this.positionY == 450 - barrel_single_height))) {
-      this.positionY += 10;
+      this.positionY += 7;
     }
   }
 
   updatebluebarrel() {
     this.index = 0;
     if(this.positionX ==140 && !(this.positionY == 190 - barrel_single_height)){
-    this.positionY += 10;
+    this.positionY += 7;
   }
 
         if(this.positionY  >= marioPlayer.positionY && (this.positionY == 520 || this.positionY == 430 || this.positionY == 360 || this.positionY == 270 || this.positionY == 180 ) ){
-          this.positionX += 10;
+          this.positionX += 7;
         }
 
 
