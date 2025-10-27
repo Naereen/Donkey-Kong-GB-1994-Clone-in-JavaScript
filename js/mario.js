@@ -102,15 +102,24 @@ class MARIO{
 
   moveUp(eachladder){
     this.index = 0;
+    
+    // Calculate the actual ladder height
+    const ladderHeight = ladder_Image.height * eachladder.height;
+    const ladderBottom = eachladder.positionY + ladderHeight;
 
     if((this.positionX + single_width +20  ) > eachladder.positionX && this.positionX < (eachladder.positionX + ladder_Image.width ) &&
-     this.positionY< eachladder.positionY+100 && this.positionY+single_height>eachladder.positionY){
+     this.positionY < ladderBottom && this.positionY+single_height>eachladder.positionY){
       this.index = ladderArray.indexOf(eachladder);
     }
 
+    // Calculate the ladder height for the selected ladder
+    const selectedLadderHeight = ladder_Image.height * ladderArray[this.index].height;
+    const selectedLadderTop = ladderArray[this.index].positionY;
+    
     if((this.positionX + single_width  ) > ladderArray[this.index].positionX &&
      this.positionX < (ladderArray[this.index].positionX + ladder_Image.width -10) &&
-     this.positionY + single_height > ladderArray[this.index].positionY ){
+     this.positionY + single_height > selectedLadderTop &&
+     this.positionY < selectedLadderTop + selectedLadderHeight){
        GRAVITY = 0;
       stopOffset =18;
       this.positionY -= stopOffset;
@@ -119,13 +128,23 @@ class MARIO{
 
     moveDown(eachladder){
       this.indexnext = 8;
+      
+      // Calculate the actual ladder height
+      const ladderHeight = ladder_Image.height * eachladder.height;
+      const ladderBottom = eachladder.positionY + ladderHeight;
+      
       if((this.positionX + single_width +5  ) > eachladder.positionX && this.positionX < (eachladder.positionX + ladder_Image.width ) &&
-       this.positionY + single_height < eachladder.positionY + ladder_Image.height   && this.positionY > eachladder.positionY  - 40 ){
+       this.positionY + single_height < ladderBottom && this.positionY > eachladder.positionY  - 40 ){
         this.indexnext = ladderArray.indexOf(eachladder);
       }
 
+      // Calculate the ladder height for the selected ladder
+      const selectedLadderHeight = ladder_Image.height * ladderArray[this.indexnext].height;
+      const selectedLadderTop = ladderArray[this.indexnext].positionY;
+      
         if((this.positionX + single_width  ) > ladderArray[this.indexnext].positionX && this.positionX < (ladderArray[this.indexnext].positionX + ladder_Image.width) &&
-        this.positionY   > ladderArray[this.indexnext].positionY -80 ){
+        this.positionY > selectedLadderTop - 40 && 
+        this.positionY < selectedLadderTop + selectedLadderHeight){
 
           stopOffset = 20;
           if(this.positionY  == 36 ){
