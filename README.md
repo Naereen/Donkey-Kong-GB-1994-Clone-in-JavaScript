@@ -2,6 +2,14 @@
 
 A browser-based recreation of the classic **Donkey Kong** arcade game inspired by the 1994 Game Boy version. Built entirely with vanilla JavaScript and HTML5 Canvas API, this game brings the nostalgic platformer action to your web browser!
 
+## 📸 Screenshots
+
+### Start Screen
+![Donkey Kong Start Screen](images/screenshot-start-screen.png)
+
+### Gameplay
+![Donkey Kong Gameplay](images/screenshot-gameplay.png)
+
 ## 🎮 Game Description
 
 Help Mario climb the construction site platforms to rescue Pauline from Donkey Kong! Navigate through dangerous barrels, climb ladders, and collect hammers to defend yourself in this faithful recreation of one of gaming's most iconic titles.
